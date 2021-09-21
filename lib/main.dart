@@ -16,8 +16,18 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var questionIndex = 0;
   var questions = [
-    "What's your favourite color?",
-    "What's your favorite animal?",
+    {
+      "questionText": "What's your favourite color?",
+      "answers": ['red', 'blue', 'green', 'white']
+    },
+    {
+      "questionText": "What's your favourite animal?",
+      "answers": ['cat', 'horse', 'dog', 'bird']
+    },
+    {
+      "questionText": "who's your favourite instructor?",
+      "answers": ['Max', 'Mohammad', 'Jessica', 'Todd']
+    },
   ];
   // This widget is the root of your application.
   void answerQuestion() {
@@ -36,10 +46,11 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Question(questions[questionIndex]),
-            Answer(),
-            Answer(),
-            Answer(),
+            Question(questions[questionIndex]['questionText'] as String),
+            ...(questions[questionIndex]['answers'] as List<String>)
+                .map((answer) {
+              return Answer(answerQuestion, answer);
+            }),
           ],
         ),
       ),
