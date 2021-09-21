@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:appflutter/question.dart';
 
 void main() {
   runApp(MyApp());
@@ -7,11 +8,11 @@ void main() {
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> {
   var questionIndex = 0;
   var questions = [
     "What's your favourite color?",
@@ -34,7 +35,7 @@ class MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Text(questions[questionIndex]),
+            Question(questions[questionIndex]),
             RaisedButton(
               onPressed: () {
                 print("$questionIndex");
